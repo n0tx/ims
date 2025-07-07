@@ -1,4 +1,4 @@
-# Inventory Management System - Full Stack Application
+# Inventory Management System
 
 ## Overview
 
