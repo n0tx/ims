@@ -12,4 +12,9 @@
 
 ## Project Setup
 
+### Prerequisites
+- Node.js **≥ 18**
+- PostgreSQL **≥ 13**
+- npm or yarn
+
 ### Database Setup
