@@ -10,11 +10,140 @@
 
 #
 
-## Project Setup
+### Database Setup
+
+
+## Installation & Setup
 
 ### Prerequisites
 - Node.js **≥ 18**
 - PostgreSQL **≥ 13**
 - npm or yarn
 
-### Database Setup
+### Backend Setup
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/n0tx/ims.git
+   cd ims
+   ```
+
+2. **Install backend dependencies**
+   ```bash
+   cd backend
+   npm install
+   ```
+
+3. **Database Setup**
+   - Create a PostgreSQL database named `inventory_db`
+   - Run the SQL schema:
+   ```bash
+   psql -h localhost -U <pguser> inventory_db < schema_and_seed.sql
+   ```
+
+4. **Environment Configuration**
+   Create a `.env` file in the backend directory:
+   ```env
+   PGHOST=localhost
+   PGPORT=5432
+   PGUSER=<pguser>
+   PGPASSWORD=<pgpassword>
+   PGDATABASE=inventory_db
+   PORT=8000
+   ```
+
+5. **Start the backend server**
+   ```bash
+   node server.js
+   ```
+
+### Frontend Setup
+
+1. **Install frontend dependencies**
+   ```bash
+   cd .. # Go back to ims root directory
+   npm install
+   ```
+
+2. **Environment Configuration**
+   Create a `.env` file in the root directory:
+   ```env
+   DATABASE_URL=postgres://<pguser>:<pgpassword>@localhost:5432/inventory_db
+   ```
+
+3. **Start the frontend development server**
+   ```bash
+   npm run dev
+   ```
+
+The application will be available at:
+- Frontend: `http://localhost:5000`
+- Backend API: `http://localhost:8000`
+
+## Available Menus & Routes
+
+### Sidebar Navigation Structure
+- **Dashboard** (`/`) - Overview metrics, charts, and KPIs
+- **Products** (`/products`) - Product inventory management
+- **Transactions** (`/transactions`) - Purchase and sales transaction management
+- **Customers** (`/customers`) - Customer database management
+- **Suppliers** (`/suppliers`) - Supplier and vendor management
+- **Reports** (`/reports`) - Analytics and reporting section
+  - Inventory Report (`/reports/inventory`)
+  - Monthly Sales (`/reports/monthly-sales`)
+  - Category Sales (`/reports/category-sales`)
+  - Top Selling Products (`/reports/top-selling`)
+
+## API Endpoints
+
+### Suppliers Management
+- `GET /api/suppliers` - List all suppliers with optional search
+- `POST /api/suppliers` - Create new supplier
+- `PUT /api/suppliers/:id` - Update existing supplier
+- `DELETE /api/suppliers/:id` - Delete supplier
+
+### Customers Management
+- `GET /api/customers` - List all customers with optional search and category filtering
+- `POST /api/customers` - Create new customer
+- `PUT /api/customers/:id` - Update existing customer
+- `DELETE /api/customers/:id` - Delete customer
+
+### Products Management
+- `GET /api/products` - List products with pagination (default: page 1, limit 10)
+- `GET /api/products/:id` - Get single product details
+- `POST /api/products` - Add new product
+- `PUT /api/products/:id` - Update product information
+
+### Transactions Management
+- `GET /api/transactions` - List transactions with filtering by type, date range, pagination
+- `GET /api/transactions/:id` - Get single transaction details
+- `POST /api/transactions` - Create new transaction (purchase or sale)
+- `PUT /api/transactions/:id` - Update existing transaction
+- `DELETE /api/transactions/:id` - Delete transaction
+
+### Reports & Analytics
+- `GET /api/reports/dashboard` - Dashboard metrics (total products, inventory value, low stock count, revenue)
+- `GET /api/reports/inventory` - Total inventory value calculation
+- `GET /api/reports/low-stock` - Products below stock threshold
+- `GET /api/reports/top-selling` - Top performing products by revenue
+- `GET /api/reports/monthly-sales` - Monthly sales trend data
+- `GET /api/reports/category-sales` - Sales breakdown by product category
+
+## System Architecture
+
+### Frontend Architecture
+- **Framework**: React 18+ with TypeScript
+- **UI Library**: Radix UI components with shadcn/ui design system
+- **Styling**: Tailwind CSS with CSS variables for theming
+- **Build Tool**: Vite for fast development and optimized builds
+- **State Management**: TanStack Query for server state management
+- **Routing**: Wouter for lightweight client-side routing
+- **Charts**: Recharts for data visualization
+
+### Backend Architecture  
+- **Runtime**: Pure Node.js HTTP server (no Express framework)
+- **Database**: PostgreSQL with Drizzle ORM
+- **Database Provider**: Neon Database (serverless PostgreSQL)
+- **API Design**: RESTful endpoints with comprehensive error handling
+- **Real-time Features**: EventEmitter for low stock notifications
+- **Validation**: Custom input validation and domain-specific error handling
