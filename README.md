@@ -80,7 +80,7 @@ The application will be available at:
 - Frontend: `http://localhost:5000`
 - Backend API: `http://localhost:8000`
 
-## Available Menus & Routes
+## Available Menus
 
 ### Sidebar Navigation Structure
 - **Dashboard** (`/`) - Overview metrics, charts, and KPIs
@@ -90,44 +90,8 @@ The application will be available at:
 - **Suppliers** (`/suppliers`) - Supplier and vendor management
 - **Reports** (`/reports`) - Analytics and reporting section
   - Inventory Report (`/reports/inventory`)
-  - Monthly Sales (`/reports/monthly-sales`)
   - Category Sales (`/reports/category-sales`)
   - Top Selling Products (`/reports/top-selling`)
-
-## API Endpoints
-
-### Suppliers Management
-- `GET /api/suppliers` - List all suppliers with optional search
-- `POST /api/suppliers` - Create new supplier
-- `PUT /api/suppliers/:id` - Update existing supplier
-- `DELETE /api/suppliers/:id` - Delete supplier
-
-### Customers Management
-- `GET /api/customers` - List all customers with optional search and category filtering
-- `POST /api/customers` - Create new customer
-- `PUT /api/customers/:id` - Update existing customer
-- `DELETE /api/customers/:id` - Delete customer
-
-### Products Management
-- `GET /api/products` - List products with pagination (default: page 1, limit 10)
-- `GET /api/products/:id` - Get single product details
-- `POST /api/products` - Add new product
-- `PUT /api/products/:id` - Update product information
-
-### Transactions Management
-- `GET /api/transactions` - List transactions with filtering by type, date range, pagination
-- `GET /api/transactions/:id` - Get single transaction details
-- `POST /api/transactions` - Create new transaction (purchase or sale)
-- `PUT /api/transactions/:id` - Update existing transaction
-- `DELETE /api/transactions/:id` - Delete transaction
-
-### Reports & Analytics
-- `GET /api/reports/dashboard` - Dashboard metrics (total products, inventory value, low stock count, revenue)
-- `GET /api/reports/inventory` - Total inventory value calculation
-- `GET /api/reports/low-stock` - Products below stock threshold
-- `GET /api/reports/top-selling` - Top performing products by revenue
-- `GET /api/reports/monthly-sales` - Monthly sales trend data
-- `GET /api/reports/category-sales` - Sales breakdown by product category
 
 ## System Architecture
 
